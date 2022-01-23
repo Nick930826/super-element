@@ -16,7 +16,10 @@
 
 <script>
 import Prism from 'prismjs';
-import '../assets/prism.css'; // 主题 CSS
+import '../assets/prism.css';
+
+const isDev = import.meta.env.MODE === 'development';
+
 export default {
   props: {
     /** 组件名称 */
@@ -34,30 +37,37 @@ export default {
   },
   data() {
     return {
-      previewSourceCode: '',
-      codeVisible: false
+      sourceCode: '',
+      codeVisible: false,
     };
   },
+  computed: {
+    previewSourceCode() {
+      return this.sourceCode.replace(/'\.\.\/\.\.\/index'/g, `'@tencent/super-element'`);
+    },
+  },
   async mounted() {
-    const isDev = import.meta.env.MODE === 'development'
     if (this.compName && this.demoName) {
       if (isDev) {
-        this.previewSourceCode = (
+        this.sourceCode = (
           await import(/* @vite-ignore */ `../../packages/${this.compName}/docs/${this.demoName}.vue?raw`)
         ).default;
       } else {
-        this.previewSourceCode = await fetch(`/packages/${this.compName}/docs/${this.demoName}.vue`).then((res) => res.text());
+        this.sourceCode = await fetch(`${isDev ? '' : '/super-element'}/packages/${this.compName}/docs/${this.demoName}.vue`).then((res) => res.text());
       }
     }
-    await this.$nextTick(); // 确保在源码都渲染好了以后再执行高亮
+    await this.$nextTick();
     Prism.highlightAll();
   },
   methods: {
+    async copyCode() {
+      // this.$copyText(this.sourceCode);
+    },
     showSourceCode() {
       this.codeVisible = !this.codeVisible;
     },
   },
-}
+};
 </script>
 
 <style lang="less">
@@ -67,11 +77,13 @@ pre {
 .mykit-preview {
   border: 4px;
   border: 1px dashed #e7e7e7;
+  padding: 10px;
   border-bottom: 1px dashed #e7e7e7;
   section {
     margin: 15px;
   }
 }
+
 .source-code {
   max-height: 500px;
 }
@@ -85,6 +97,5 @@ pre {
   justify-content: center;
   align-items: center;
   border-top: 1px dashed #e7e7e7;
-  cursor: pointer;
 }
 </style>
