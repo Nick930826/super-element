@@ -1,0 +1,24 @@
+{
+  "name": "super-element",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --config ./build/base.config.ts",
+    "build:doc": "vue-tsc --noEmit && vite build --config ./build/doc.config.ts && node script/copyDir.js",
+    "build:lib": "vue-tsc --noEmit && vite build --config ./build/lib.config.ts"
+  },
+  "dependencies": {
+    "less": "^4.1.2",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.10",
+    "@vitejs/plugin-vue": "^2.0.0",
+    "prismjs": "^1.26.0",
+    "typescript": "^4.4.4",
+    "vite": "^2.7.2",
+    "vite-plugin-dts": "^0.9.9",
+    "vite-plugin-md": "^0.11.7",
+    "vue-tsc": "^0.29.8"
+  }
+}
