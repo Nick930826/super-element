@@ -14,6 +14,7 @@
   "devDependencies": {
     "@types/node": "^17.0.10",
     "@vitejs/plugin-vue": "^2.0.0",
+    "fs-extra": "^10.0.0",
     "prismjs": "^1.26.0",
     "typescript": "^4.4.4",
     "vite": "^2.7.2",
