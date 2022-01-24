@@ -6,7 +6,7 @@ const createPackageJson = (name) => {
   const fileStr = `{
   "name": "super-element-ui",
   "description": "这是一个组件库",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.umd.js",
   "module": "index.es.js",
   "style": "style.css",

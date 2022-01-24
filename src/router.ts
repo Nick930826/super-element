@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
@@ -11,7 +9,7 @@ const routes = [
     title: '按钮',
     name: 'Button',
     path: '/components/Button',
-    component: () => import('packages/Button/docs/README.md'),
+    component: () => import('packages/Button/docs/README.md'), // 将文档以Vue组件的形式展示
   }
 ];
 

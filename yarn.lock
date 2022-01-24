@@ -1162,6 +1162,11 @@ strip-bom-string@^1.0.0:
   resolved "https://registry.npm.taobao.org/strip-bom-string/download/strip-bom-string-1.0.0.tgz"
   integrity sha1-5SEekiQ2n7uB1jOi8ABE3IztrZI=
 
+super-element-ui@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/super-element-ui/-/super-element-ui-0.0.2.tgz#9dde39867100e6b547edbf8eb9d254ebe46824c7"
+  integrity sha512-d1Q4Ie619OkMoxplO5lr70ZYvD9/uovlJ1Aq697xfHcan7YK9tUABSBxuwHq27dsQPf08gHlt7Htzmvy5QNhEA==
+
 supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmmirror.com/supports-preserve-symlinks-flag/download/supports-preserve-symlinks-flag-1.0.0.tgz"

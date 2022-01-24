@@ -9,8 +9,8 @@ export default defineConfig({
     outDir: 'dist',
     lib: {
       entry: resolve(__dirname, '../packages/index.ts'),
-      name: 'MYKit',
-      fileName: (format) => `my-kit.${format}.js`,
+      name: 'SuperElement',
+      fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖

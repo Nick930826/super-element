@@ -4,10 +4,11 @@
   "scripts": {
     "dev": "vite --config ./build/base.config.ts",
     "build:doc": "vue-tsc --noEmit && vite build --config ./build/doc.config.ts && node script/copyDir.js",
-    "build:lib": "vue-tsc --noEmit && vite build --config ./build/lib.config.ts"
+    "build:lib": "vue-tsc --noEmit && vite build --config ./build/lib.config.ts && node script/createPkg.js"
   },
   "dependencies": {
     "less": "^4.1.2",
+    "super-element-ui": "^0.0.2",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12"
   },
