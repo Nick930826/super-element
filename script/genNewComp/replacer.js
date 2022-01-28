@@ -49,7 +49,34 @@ const compFilesTplReplacer = (meta) => {
   })
 }
 
+// 生成packages文件夹下的index.ts文件，注册组件
+const packageRootIndexReplacer = (meta) => {
+  console.log()
+  // 读取模板文件
+  const fileTpl = fs.readFileSync(resolve(__dirname, './.template/install.ts.tpl'), 'utf-8')
+  const CompJson = JSON.parse(fs.readFileSync(resolve(__dirname, '../../packages/list.json'), 'utf-8'))
+  CompJson.push({
+    compName: meta.compName,
+    compZhName: meta.compZhName,
+    compDesc: meta.compDesc,
+    compClassName: meta.compClassName
+  })
+  // 生成参数
+  const params = {
+    importPlugins: CompJson.map(cur => `import { ${cur.compName}Plugin } from './${cur.compName}';`).join('\n'),
+    installPlugins: CompJson.map(cur => `${cur.compName}Plugin.install?.(app),`).join('\n    '), // 空四格
+    exportPlugins: CompJson.map(cur => `export * from './${cur.compName}';`).join('\n')
+  }
+  // 替换操作
+  const fileContent = handlebars.compile(fileTpl, { noEscape: true })(params)
+  // 替换之后，将内容写入文件
+  fs.outputFile(resolve(__dirname, '../../packages/index.ts'), fileContent, (err) => {
+    if (err) console.log('错误提示', err)
+  })
+}
+
 module.exports = (meta) => {
-  compFilesTplReplacer(meta)
+  // compFilesTplReplacer(meta),
+  packageRootIndexReplacer(meta)
 }
 
