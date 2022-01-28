@@ -49,11 +49,8 @@ const compFilesTplReplacer = (meta) => {
   })
 }
 
-// 生成packages文件夹下的index.ts文件，注册组件
-const packageRootIndexReplacer = (meta) => {
-  console.log()
-  // 读取模板文件
-  const fileTpl = fs.readFileSync(resolve(__dirname, './.template/install.ts.tpl'), 'utf-8')
+// 生成packages文件夹下的list.json文件，并且替换
+const listJsonTplReplacer = (meta) => {
   const CompJson = JSON.parse(fs.readFileSync(resolve(__dirname, '../../packages/list.json'), 'utf-8'))
   CompJson.push({
     compName: meta.compName,
@@ -61,6 +58,18 @@ const packageRootIndexReplacer = (meta) => {
     compDesc: meta.compDesc,
     compClassName: meta.compClassName
   })
+  const newCompJson = JSON.stringify(CompJson, null, 2)
+  // 替换之后，将内容写入文件
+  fs.outputFile(resolve(__dirname, '../../packages/list.json'), newCompJson, (err) => {
+    if (err) console.log('错误提示', err)
+  })
+  return CompJson
+}
+
+// 生成packages文件夹下的index.ts文件，注册组件
+const packageRootIndexReplacer = (CompJson) => {
+  // 读取模板文件
+  const fileTpl = fs.readFileSync(resolve(__dirname, './.template/install.ts.tpl'), 'utf-8')
   // 生成参数
   const params = {
     importPlugins: CompJson.map(cur => `import { ${cur.compName}Plugin } from './${cur.compName}';`).join('\n'),
@@ -75,8 +84,32 @@ const packageRootIndexReplacer = (meta) => {
   })
 }
 
+// 生成新的路由
+const routerFileReplacer = (CompJson) => {
+  const routerFileFrom = './.template/router.ts.tpl'
+  const routerFileTo = '../../src/router.ts'
+  const routerFileTpl = fs.readFileSync(resolve(__dirname, routerFileFrom), 'utf-8')
+  const routerMeta = {
+    routes: CompJson.map(comp => {
+      return `{
+    title: '${comp.compZhName}',
+    name: '${comp.compName}',
+    path: '/components/${comp.compName}',
+    component: () => import('packages/${comp.compName}/docs/README.md'),
+  }`
+    })
+  }
+  const routerFileContent = handlebars.compile(routerFileTpl, { noEscape: true })(routerMeta)
+  fs.outputFile(resolve(__dirname, routerFileTo), routerFileContent, err => {
+    if (err) console.log(err)
+  })
+}
+
+
 module.exports = (meta) => {
-  // compFilesTplReplacer(meta),
-  packageRootIndexReplacer(meta)
+  compFilesTplReplacer(meta)
+  const CompJson = listJsonTplReplacer(meta)
+  packageRootIndexReplacer(CompJson)
+  routerFileReplacer(CompJson)
 }
 

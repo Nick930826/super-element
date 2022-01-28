@@ -1,28 +1,22 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, RouterOptions } from 'vue-router'
 
-const routes = [
-  {
-    path: '/',
-    redirect: '/components/Button'
-  },
-  {
+ const routes = [{
     title: '按钮',
     name: 'Button',
     path: '/components/Button',
-    component: () => import('packages/Button/docs/README.md'), // 将文档以Vue组件的形式展示
-  }
-];
-
-const routerConfig = {
-  history: createWebHashHistory(),
-  routes,
-  scrollBehavior(to: any, from: any) {
-    if (to.path !== from.path) {
-      return { top: 0 };
-    }
-  },
-};
-
-const router = createRouter(routerConfig);
-
-export default router;
+    component: () => import('packages/Button/docs/README.md'),
+  }];
+ 
+ const routerConfig = {
+   history: createWebHashHistory(),
+   routes,
+   scrollBehavior(to: any, from: any) {
+     if (to.path !== from.path) {
+       return { top: 0 };
+     }
+   },
+ };
+ 
+ const router = createRouter(routerConfig as RouterOptions);
+ 
+ export default router;
