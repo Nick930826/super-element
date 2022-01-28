@@ -73,7 +73,7 @@ const packageRootIndexReplacer = (CompJson) => {
   // 生成参数
   const params = {
     importPlugins: CompJson.map(cur => `import { ${cur.compName}Plugin } from './${cur.compName}';`).join('\n'),
-    installPlugins: CompJson.map(cur => `${cur.compName}Plugin.install?.(app),`).join('\n    '), // 空四格
+    installPlugins: CompJson.map(cur => `${cur.compName}Plugin.install?.(app)`).join('\n    '), // 空四格
     exportPlugins: CompJson.map(cur => `export * from './${cur.compName}';`).join('\n')
   }
   // 替换操作
