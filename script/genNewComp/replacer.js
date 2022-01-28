@@ -99,6 +99,12 @@ const routerFileReplacer = (CompJson) => {
   }`
     })
   }
+  routerMeta.routes.unshift(`
+    {
+      path: '/',
+      redirect: '/components/Button'
+    }
+  `)
   const routerFileContent = handlebars.compile(routerFileTpl, { noEscape: true })(routerMeta)
   fs.outputFile(resolve(__dirname, routerFileTo), routerFileContent, err => {
     if (err) console.log(err)

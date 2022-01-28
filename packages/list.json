@@ -4,5 +4,11 @@
     "compZhName": "按钮",
     "compDesc": "这是一个按钮",
     "compClassName": "button"
+  },
+  {
+    "compName": "Avatar",
+    "compZhName": "头像",
+    "compDesc": "一个头像",
+    "compClassName": "avatar"
   }
 ]

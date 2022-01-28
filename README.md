@@ -11,4 +11,8 @@ npm run build:lib
 npm run build:doc
 ```
 - 打包后，将项目推送到github仓库，然后切换到gh-pages分支，将main分支合并到gh-pages分支。文档会自动获取docs目录的更新。
+## 自动化添加一个新的组件模板
+```bash
+npm run add
+```
 
