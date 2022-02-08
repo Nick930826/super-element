@@ -9,7 +9,8 @@
     </div>
 
     <div class="preview-bottom">
-      <span name="Code" @click="showSourceCode">查看代码</span>
+      <span name="Code" @click="showSourceCode">查看代码 <span :class="codeVisible ? 'show' : 'hide'">▲</span></span>
+      
     </div>
   </div>
 </template>
@@ -53,7 +54,7 @@ export default {
           await import(/* @vite-ignore */ `../../packages/${this.compName}/docs/${this.demoName}.vue?raw`)
         ).default;
       } else {
-        this.sourceCode = await fetch(`${isDev ? '' : '/super-element'}/packages/${this.compName}/docs/${this.demoName}.vue`).then((res) => res.text());
+        this.sourceCode = await fetch(`/super-element/packages/${this.compName}/docs/${this.demoName}.vue`).then((res) => res.text());
       }
     }
     await this.$nextTick();
@@ -78,7 +79,9 @@ pre {
   border: 4px;
   border: 1px dashed #e7e7e7;
   padding: 10px;
+  padding-bottom: 0;
   border-bottom: 1px dashed #e7e7e7;
+  cursor: pointer;
   section {
     margin: 15px;
   }
@@ -97,5 +100,9 @@ pre {
   justify-content: center;
   align-items: center;
   border-top: 1px dashed #e7e7e7;
+  .hide {
+    display: inline-block;
+    transform: rotate(180deg);
+  }
 }
 </style>

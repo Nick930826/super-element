@@ -1,7 +1,16 @@
 <template>
   <div class="my-kit-doc">
     <aside>
-      <router-link v-for="(link, index) in data.links" :key="index" :to="link.path">{{ link.name }}</router-link>
+      <el-menu
+        active-text-color="#ffffff"
+        :default-active="active"
+        style="border-right: none;height: 100%;"
+        router
+      >
+        <el-menu-item v-for="(link, index) in data.links" :key="index" :index="link.path">
+          <span>{{ link.name }}</span>
+        </el-menu-item>
+      </el-menu>
     </aside>
     <main>
       <router-view></router-view>
@@ -19,6 +28,7 @@ const data = reactive({
     name: item.compZhName
   }))
 })
+const active = `/components/${ComponentList[0].compName}`
 </script>
 
 <style lang="less">
@@ -39,6 +49,13 @@ body {
     width: 100%;
     flex: 1;
     padding: 15px;
+  }
+  .el-menu-item {
+    border-radius: 8px;
+    height: 36px;
+    &.is-active {
+      background-color: #7B68EE;
+    }
   }
 }
 </style>

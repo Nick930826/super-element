@@ -1,13 +1,13 @@
 import { App, Plugin } from 'vue'
 
-import { ButtonPlugin } from './Button';
+{{ importPlugins }}
 
 const MyKitPlugin: Plugin = {
   install(app: App) {
-    ButtonPlugin.install?.(app)
+    {{ installPlugins }}
   },
 }
 
 export default MyKitPlugin
 
-export * from './Button';
+{{ exportPlugins }}

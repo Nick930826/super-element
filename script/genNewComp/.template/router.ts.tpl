@@ -1,16 +1,6 @@
 import { createRouter, createWebHashHistory, RouterOptions } from 'vue-router'
 
- const routes = [
-    {
-      path: '/',
-      redirect: '/components/Button'
-    }
-  ,{
-    title: '按钮',
-    name: 'Button',
-    path: '/components/Button',
-    component: () => import('packages/Button/docs/README.md'),
-  }];
+ const routes = [{{ routes }}];
  
  const routerConfig = {
    history: createWebHashHistory(),

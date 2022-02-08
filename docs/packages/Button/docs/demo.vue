@@ -1,8 +1,8 @@
 <template>
   <div>
-    <my-button @click="onClick(1)">第一个</my-button>
-    <my-button @click="onClick(2)">第二个</my-button>
-    <my-button @click="onClick(3)">第三个</my-button>
+    <my-button type='primary' @click="onClick(1)">默认</my-button>
+    <my-button type='danger' @click="onClick(2)">危险</my-button>
+    <my-button type='success' @click="onClick(3)">成功</my-button>
   </div>
 </template>
 

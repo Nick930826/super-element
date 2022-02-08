@@ -1,6 +1,6 @@
 import { App, Plugin } from 'vue'
 
-import { ButtonPlugin } from './Button'
+import { ButtonPlugin } from './Button';
 
 const MyKitPlugin: Plugin = {
   install(app: App) {
@@ -10,4 +10,4 @@ const MyKitPlugin: Plugin = {
 
 export default MyKitPlugin
 
-export * from './Button'
+export * from './Button';
