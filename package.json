@@ -8,6 +8,7 @@
     "add": "node ./script/genNewComp/index.js"
   },
   "dependencies": {
+    "element-plus": "^2.0.1",
     "less": "^4.1.2",
     "super-element-ui": "^0.0.2",
     "vue": "^3.2.25",
@@ -16,6 +17,10 @@
   "devDependencies": {
     "@types/node": "^17.0.10",
     "@vitejs/plugin-vue": "^2.0.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
     "fs-extra": "^10.0.0",
     "handlebars": "^4.7.7",
     "inquirer": "^8.2.0",

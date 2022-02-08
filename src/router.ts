@@ -10,11 +10,6 @@ import { createRouter, createWebHashHistory, RouterOptions } from 'vue-router'
     name: 'Button',
     path: '/components/Button',
     component: () => import('packages/Button/docs/README.md'),
-  },{
-    title: '头像',
-    name: 'Avatar',
-    path: '/components/Avatar',
-    component: () => import('packages/Avatar/docs/README.md'),
   }];
  
  const routerConfig = {
